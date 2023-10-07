@@ -10,23 +10,23 @@ using System.Windows.Forms;
 
 namespace Tic_Tac_Toe
 {
-    public partial class Form2 : Form
+    public partial class MainMenuForm : Form
     {
-        public Form2()
+        public MainMenuForm()
         {
             InitializeComponent();
         }
 
         private void PlayerVSPlayerMode(object sender, EventArgs e)
         {
-            Form1 playForm = new Form1(false);
+            GameForm playForm = new GameForm(false);
             playForm.Show();
             Hide();
         }
 
         private void PlayerVSCPUMode(object sender, EventArgs e)
         {
-            Form1 form = new Form1(true);
+            GameForm form = new GameForm(true);
             form.Show();
             Hide();
         }

@@ -1,6 +1,6 @@
 ﻿namespace Tic_Tac_Toe
 {
-    partial class Form1
+    partial class GameForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            label1 = new Label();
-            label2 = new Label();
+            FirstPlayerLabel = new Label();
+            SecondPlayerOrCPULabel = new Label();
             button1 = new Button();
             button4 = new Button();
             button7 = new Button();
@@ -42,29 +42,31 @@
             button6 = new Button();
             button3 = new Button();
             CPUTimer = new System.Windows.Forms.Timer(components);
+            PlayerOneWinCounter = new Label();
+            PlayerTwoOrCPUWinCounter = new Label();
             SuspendLayout();
             // 
-            // label1
+            // FirstPlayerLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(0, 192, 0);
-            label1.Location = new Point(12, 9);
-            label1.Name = "label1";
-            label1.Size = new Size(122, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Player Wins: ";
+            FirstPlayerLabel.AutoSize = true;
+            FirstPlayerLabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            FirstPlayerLabel.ForeColor = Color.FromArgb(0, 192, 0);
+            FirstPlayerLabel.Location = new Point(12, 9);
+            FirstPlayerLabel.Name = "FirstPlayerLabel";
+            FirstPlayerLabel.Size = new Size(122, 25);
+            FirstPlayerLabel.TabIndex = 0;
+            FirstPlayerLabel.Text = "Player Wins: ";
             // 
-            // label2
+            // SecondPlayerOrCPULabel
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.FromArgb(192, 0, 0);
-            label2.Location = new Point(350, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(105, 25);
-            label2.TabIndex = 1;
-            label2.Text = "CPU Wins: ";
+            SecondPlayerOrCPULabel.AutoSize = true;
+            SecondPlayerOrCPULabel.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            SecondPlayerOrCPULabel.ForeColor = Color.FromArgb(192, 0, 0);
+            SecondPlayerOrCPULabel.Location = new Point(350, 9);
+            SecondPlayerOrCPULabel.Name = "SecondPlayerOrCPULabel";
+            SecondPlayerOrCPULabel.Size = new Size(105, 25);
+            SecondPlayerOrCPULabel.TabIndex = 1;
+            SecondPlayerOrCPULabel.Text = "CPU Wins: ";
             // 
             // button1
             // 
@@ -189,11 +191,33 @@
             CPUTimer.Interval = 1000;
             CPUTimer.Tick += CPUMove;
             // 
-            // Form1
+            // PlayerOneWinCounter
+            // 
+            PlayerOneWinCounter.AutoSize = true;
+            PlayerOneWinCounter.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            PlayerOneWinCounter.ForeColor = Color.FromArgb(0, 192, 0);
+            PlayerOneWinCounter.Location = new Point(130, 9);
+            PlayerOneWinCounter.Name = "PlayerOneWinCounter";
+            PlayerOneWinCounter.Size = new Size(0, 25);
+            PlayerOneWinCounter.TabIndex = 18;
+            // 
+            // PlayerTwoOrCPUWinCounter
+            // 
+            PlayerTwoOrCPUWinCounter.AutoSize = true;
+            PlayerTwoOrCPUWinCounter.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            PlayerTwoOrCPUWinCounter.ForeColor = Color.FromArgb(192, 0, 0);
+            PlayerTwoOrCPUWinCounter.Location = new Point(455, 9);
+            PlayerTwoOrCPUWinCounter.Name = "PlayerTwoOrCPUWinCounter";
+            PlayerTwoOrCPUWinCounter.Size = new Size(0, 25);
+            PlayerTwoOrCPUWinCounter.TabIndex = 19;
+            // 
+            // GameForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(504, 481);
+            Controls.Add(PlayerTwoOrCPUWinCounter);
+            Controls.Add(PlayerOneWinCounter);
             Controls.Add(button9);
             Controls.Add(button6);
             Controls.Add(button3);
@@ -204,9 +228,9 @@
             Controls.Add(button7);
             Controls.Add(button4);
             Controls.Add(button1);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Name = "Form1";
+            Controls.Add(SecondPlayerOrCPULabel);
+            Controls.Add(FirstPlayerLabel);
+            Name = "GameForm";
             Text = "Tic Tac Toe Win Form";
             ResumeLayout(false);
             PerformLayout();
@@ -214,8 +238,8 @@
 
         #endregion
 
-        private Label label1;
-        private Label label2;
+        private Label FirstPlayerLabel;
+        private Label SecondPlayerOrCPULabel;
         private Button button1;
         private Button button4;
         private Button button7;
@@ -227,5 +251,7 @@
         private Button button6;
         private Button button3;
         private System.Windows.Forms.Timer CPUTimer;
+        private Label PlayerOneWinCounter;
+        private Label PlayerTwoOrCPUWinCounter;
     }
 }

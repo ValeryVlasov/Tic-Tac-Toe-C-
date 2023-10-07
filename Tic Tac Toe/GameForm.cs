@@ -2,7 +2,7 @@ using System.Drawing.Design;
 
 namespace Tic_Tac_Toe
 {
-    public partial class Form1 : Form
+    public partial class GameForm : Form
     {
         public enum Player
         {
@@ -10,32 +10,28 @@ namespace Tic_Tac_Toe
         }
         Player currentPlayer = Player.X;
         Random random = new Random();
-        int playerWinCount = 0;
-        int secondPlayerWinCount = 0;
-        int CPUWinCount = 0;
+        int playerOneWinCount = 0;
+        int PlayerTwoOrCPUWinCount = 0;
         List<Button> buttons;
         bool IsPlayerVSCPU = true;
 
-        public Form1()
-        {
-            InitializeComponent();
-            RestartGame();
-        }
 
-        public Form1(bool _IsPlayerVSCPU)
+        public GameForm(bool _IsPlayerVSCPU)
         {
             InitializeComponent();
             IsPlayerVSCPU = _IsPlayerVSCPU;
+            if (!IsPlayerVSCPU)
+                SecondPlayerOrCPULabel.Left = SecondPlayerOrCPULabel.Location.X - 15;
             RestartGame();
         }
 
-
         private void PlayerClickButton(object sender, EventArgs e)
         {
+            var button = (Button)sender;
+
             if (IsPlayerVSCPU)
             {
                 if (CPUTimer.Enabled) return;
-                var button = (Button)sender;
 
                 currentPlayer = Player.X;
                 button.Text = currentPlayer.ToString();
@@ -47,8 +43,6 @@ namespace Tic_Tac_Toe
             }
             else
             {
-                var button = (Button)sender;
-
                 button.Text = currentPlayer.ToString();
                 button.Enabled = false;
                 if (currentPlayer.Equals(Player.X))
@@ -84,57 +78,45 @@ namespace Tic_Tac_Toe
             RestartGame();
         }
 
+        private bool checkCombinationsToWin(string player)
+        {
+            return button1.Text == player && button2.Text == player && button3.Text == player
+                || button4.Text == player && button5.Text == player && button6.Text == player
+                || button7.Text == player && button8.Text == player && button9.Text == player
+                || button1.Text == player && button4.Text == player && button7.Text == player
+                || button2.Text == player && button5.Text == player && button8.Text == player
+                || button3.Text == player && button6.Text == player && button9.Text == player
+                || button1.Text == player && button5.Text == player && button9.Text == player
+                || button3.Text == player && button5.Text == player && button7.Text == player;
+        }
+
         private void CheckGame()
         {
-            if (button1.Text == "X" && button2.Text == "X" && button3.Text == "X"
-                || button4.Text == "X" && button5.Text == "X" && button6.Text == "X"
-                || button7.Text == "X" && button8.Text == "X" && button9.Text == "X"
-                || button1.Text == "X" && button4.Text == "X" && button7.Text == "X"
-                || button2.Text == "X" && button5.Text == "X" && button8.Text == "X"
-                || button3.Text == "X" && button6.Text == "X" && button9.Text == "X"
-                || button1.Text == "X" && button5.Text == "X" && button9.Text == "X"
-                || button3.Text == "X" && button5.Text == "X" && button7.Text == "X")
+            if (checkCombinationsToWin("X"))
             {
+                playerOneWinCount++;
                 if (IsPlayerVSCPU)
                 {
                     CPUTimer.Stop();
                     MessageBox.Show("You Win!", "Player wins!");
-                    playerWinCount++;
-                    label1.Text = "Player Wins: " + playerWinCount;
-                    RestartGame();
                 }
                 else
-                {
                     MessageBox.Show("First player wins!", "Player1 wins!");
-                    playerWinCount++;
-                    label1.Text = "Player1 Wins: " + playerWinCount;
-                    RestartGame();
-                }
+                PlayerOneWinCounter.Text = playerOneWinCount.ToString();
+                RestartGame();
             }
-            else if (button1.Text == "O" && button2.Text == "O" && button3.Text == "O"
-                || button4.Text == "O" && button5.Text == "O" && button6.Text == "O"
-                || button7.Text == "O" && button8.Text == "O" && button9.Text == "O"
-                || button1.Text == "O" && button4.Text == "O" && button7.Text == "O"
-                || button2.Text == "O" && button5.Text == "O" && button8.Text == "O"
-                || button3.Text == "O" && button6.Text == "O" && button9.Text == "O"
-                || button1.Text == "O" && button5.Text == "O" && button9.Text == "O"
-                || button3.Text == "O" && button5.Text == "O" && button7.Text == "O")
+            else if (checkCombinationsToWin("O"))
             {
+                PlayerTwoOrCPUWinCount++;
                 if (IsPlayerVSCPU)
                 {
                     CPUTimer.Stop();
                     MessageBox.Show("You lost!", "CPU wins!");
-                    CPUWinCount++;
-                    label2.Text = "CPU Wins: " + CPUWinCount;
-                    RestartGame();
                 }
                 else
-                {
                     MessageBox.Show("Second player wins!", "Player2 wins!");
-                    secondPlayerWinCount++;
-                    label2.Text = "Player2 Wins: " + secondPlayerWinCount;
-                    RestartGame();
-                }
+                PlayerTwoOrCPUWinCounter.Text = PlayerTwoOrCPUWinCount.ToString();
+                RestartGame();
             }
             else if (buttons.Count == 0)
             {
@@ -147,8 +129,8 @@ namespace Tic_Tac_Toe
         {
             if (!IsPlayerVSCPU)
             {
-                label1.Text = "Player1 Wins: ";
-                label2.Text = "Player2 Wins: ";
+                FirstPlayerLabel.Text = "Player1 Wins: ";
+                SecondPlayerOrCPULabel.Text = "Player2 Wins: ";
             }
             buttons = new List<Button> { button1, button8, button5,
                                                          button2, button9, button4,

@@ -1,6 +1,6 @@
 ﻿namespace Tic_Tac_Toe
 {
-    partial class Form2
+    partial class MainMenuForm
     {
         /// <summary>
         /// Required designer variable.
@@ -52,15 +52,15 @@
             button2.UseVisualStyleBackColor = true;
             button2.Click += PlayerVSPlayerMode;
             // 
-            // Form2
+            // MainMenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(button2);
             Controls.Add(button1);
-            Name = "Form2";
-            Text = "Form2";
+            Name = "MainMenuForm";
+            Text = "Menu";
             ResumeLayout(false);
         }
 
