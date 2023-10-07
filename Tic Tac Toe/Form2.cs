@@ -19,12 +19,14 @@ namespace Tic_Tac_Toe
 
         private void PlayerVSPlayerMode(object sender, EventArgs e)
         {
-
+            Form1 playForm = new Form1(false);
+            playForm.Show();
+            Hide();
         }
 
         private void PlayerVSCPUMode(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
+            Form1 form = new Form1(true);
             form.Show();
             Hide();
         }
