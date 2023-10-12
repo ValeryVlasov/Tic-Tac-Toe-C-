@@ -230,6 +230,7 @@
             Controls.Add(button1);
             Controls.Add(SecondPlayerOrCPULabel);
             Controls.Add(FirstPlayerLabel);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "GameForm";
             Text = "Tic Tac Toe Win Form";
             ResumeLayout(false);
